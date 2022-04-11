@@ -7,33 +7,39 @@ let Contry = document.getElementById("country");
 let EmployeeArr;
 //GET LOCAL STORAGE
 if (localStorage.getItem("employee") == null) {
-  EmployeeArr = [];
+    EmployeeArr = [];
 } else {
-  EmployeeArr = JSON.parse(localStorage.getItem("employee"));
-  showEmployee();
+    EmployeeArr = JSON.parse(localStorage.getItem("employee"));
+    showEmployee();
 }
 //Add Employeee
 function addEmpolyeeInf() {
-  if (e_Name.value != "" && e_salary.value != "" && Contry.value != "") {
-    var Employee = {
-      empName: e_Name.value,
-      empSalary: e_salary.value,
-      emp_contry: Contry.value,
-    };
+    if (e_Name.value != "" && e_salary.value != "" && Contry.value != "") {
 
-    EmployeeArr.push(Employee);
-    localStorage.setItem("employee", JSON.stringify(EmployeeArr)); //SET LOCAL STORAGE
-    showEmployee();
-    clear();
-  } else {
-    alert("ضيف بيانات ياصحبي ");
-  }
+        if (typeof e_Name === "string" && typeof e_salary === "number") {
+
+            var Employee = {
+                empName: e_Name.value,
+                empSalary: e_salary.value,
+                emp_contry: Contry.value,
+            };
+
+            EmployeeArr.push(Employee);
+            localStorage.setItem("employee", JSON.stringify(EmployeeArr)); //SET LOCAL STORAGE
+            showEmployee();
+            clear();
+        } else {
+            alert("اكتب الاسم صح ياصحبي او المرتب");
+        }
+    } else {
+        alert("ضيف بيانات ياصحبي ");
+    }
 }
 //show Employee
 function showEmployee() {
-  let container = ``; //to save <tr>
-  for (let i = 0; i < EmployeeArr.length; i++) {
-    container += `
+    let container = ``; //to save <tr>
+    for (let i = 0; i < EmployeeArr.length; i++) {
+        container += `
     <tr >
     <td >${i + 1}</td>
     <td >${EmployeeArr[i].empName}</td>
@@ -46,49 +52,49 @@ function showEmployee() {
     </tr>
     
     `;
-  }
+    }
 
-  document.getElementById("data").innerHTML = container;
+    document.getElementById("data").innerHTML = container;
 }
 //GetData
 function getData(index) {
-  e_Name.value = EmployeeArr[index].empName;
-  e_salary.value = EmployeeArr[index].empSalary;
-  Contry.value = EmployeeArr[index].emp_contry;
-  document.getElementById(
-    "update"
-  ).innerHTML = `<button class='btn btn-warning'  onclick="Update(${index})">Update</button>`;
-  document.getElementById("add").style.display = "none";
-  document.getElementById("dtal").style.display = "none";
-  document.getElementById("name").focus();
+    e_Name.value = EmployeeArr[index].empName;
+    e_salary.value = EmployeeArr[index].empSalary;
+    Contry.value = EmployeeArr[index].emp_contry;
+    document.getElementById(
+        "update"
+    ).innerHTML = `<button class='btn btn-warning'  onclick="Update(${index})">Update</button>`;
+    document.getElementById("add").style.display = "none";
+    document.getElementById("dtal").style.display = "none";
+    document.getElementById("name").focus();
 }
 
 //Get Updata
 function Update(index) {
-  EmployeeArr[index].empName = e_Name.value;
-  EmployeeArr[index].empSalary = e_salary.value;
-  EmployeeArr[index].emp_contry = Contry.value;
-  document.getElementById("update").style.display = "none";
-  document.getElementById("add").style.display = "inline-block";
-  document.getElementById("dtal").style.display = "inline-block";
+    EmployeeArr[index].empName = e_Name.value;
+    EmployeeArr[index].empSalary = e_salary.value;
+    EmployeeArr[index].emp_contry = Contry.value;
+    document.getElementById("update").style.display = "none";
+    document.getElementById("add").style.display = "inline-block";
+    document.getElementById("dtal").style.display = "inline-block";
 
-  localStorage.setItem("employee", JSON.stringify(EmployeeArr));
-  showEmployee();
-  clear();
+    localStorage.setItem("employee", JSON.stringify(EmployeeArr));
+    showEmployee();
+    clear();
 }
 //delete
 function Delete(index) {
-  EmployeeArr.splice(index, 1);
-  localStorage.setItem("employee", JSON.stringify(EmployeeArr));
-  showEmployee();
+    EmployeeArr.splice(index, 1);
+    localStorage.setItem("employee", JSON.stringify(EmployeeArr));
+    showEmployee();
 }
 //Get  Details
 function getDetails(index) {
-  let m = index + 1;
-  let container = ``; //to save <tr>
-  for (let i = 0; i < m; i++) {
-    for (var k = i; k < m; k++) {
-      container = `
+    let m = index + 1;
+    let container = ``; //to save <tr>
+    for (let i = 0; i < m; i++) {
+        for (var k = i; k < m; k++) {
+            container = `
       <tr >
       <td >${i + 1}</td>
       <td >${EmployeeArr[i].empName}</td>
@@ -99,16 +105,16 @@ function getDetails(index) {
       </tr>
       
       `;
+        }
     }
-  }
 
-  document.getElementById("detal").innerHTML = container;
+    document.getElementById("detal").innerHTML = container;
 }
 //Get all Details
 function getTotalDetails() {
-  let container = ``; //to save <tr>
-  for (let i = 0; i < EmployeeArr.length; i++) {
-    container += `
+    let container = ``; //to save <tr>
+    for (let i = 0; i < EmployeeArr.length; i++) {
+        container += `
         <tr >
         <td >${i + 1}</td>
         <td >${EmployeeArr[i].empName}</td>
@@ -117,14 +123,14 @@ function getTotalDetails() {
         </tr>
         
         `;
-  }
+    }
 
-  document.getElementById("detal").innerHTML = container;
+    document.getElementById("detal").innerHTML = container;
 }
 //Clear Data From Inputs
 function clear() {
-  e_Name.value = "";
-  e_salary.value = "";
-  Contry.value = "";
-  document.getElementById("name").focus();
+    e_Name.value = "";
+    e_salary.value = "";
+    Contry.value = "";
+    document.getElementById("name").focus();
 }
