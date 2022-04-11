@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
         body {
             background-color: #ddd;
         }
         
-
-        .table tr:hover{
+        .table tr:hover {
             background-color: #ccc;
         }
-        .btt{
-         width: 200px;
-
-
-        }
         
-   
+        .btt {
+            width: 200px;
+        }
     </style>
-        <script defer src="./Main.js"></script>
-    </head>
+    <script defer src="./Main.js"></script>
+</head>
 
-    <body>
+<body>
 
 
-        <div class="container my-5">
+    <div class="container my-5">
 
-            <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" name="" id="name" class="form-control">
+        <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" name="" id="name" class="form-control" pattern="[A-Za-z]{50}" title="50 letter Max Size">
+            <div class="alert alert-danger d-none" role="alert" id="v_name">
+                👌 اكتب الاسم صح ياصحبي
             </div>
-            <div class="form-group">
-                <label for="">Salary</label>
-                <input type="text" name="" id="salary" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Salary</label>
+            <input type="text" name="" id="salary" class="form-control">
+            <div class="alert alert-danger d-none" role="alert" id="v_sal">
+                👌اكتب المرتب صح ياصحبي
             </div>
-            <div class="form-group">
-                <select id="country" name="country">
+        </div>
+        <div class="form-group">
+            <select id="country" name="country">
                     <option value="">---Select_Contry---</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -295,78 +297,74 @@
                     <option value="Zambia">Zambia</option>
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
-            </div>
-            <div class="bttt">
-                <button id="add" class="btn btn-success"
-                    onclick="addEmpolyeeInf()">Add</button>
-                <button id="dtal" class="btn btn-info ml-2" data-toggle="modal"
-                    data-target="#exampleModal"
-                    onclick="getTotalDetails()" type="button">GetTotalDetalis</button>
-            </div>
-            <div id="update"></div>
-            <table class="table w-95 my-5 rounded">
-                <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Salary</th>
-                    <th>Country</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                    <th>Details</th>
-                </thead>
-                <tbody id="data">
-
-                </tbody>
-
-            </table>
-            <footer></footer>
         </div>
+        <div class="alert alert-danger d-none" role="alert" id="not">
+            👌 متنساش تختار الدولة ياصحبي
+        </div>
+        <div class="bttt">
+            <button id="add" class="btn btn-success" onclick="addEmpolyeeInf()">Add</button>
+            <button id="dtal" class="btn btn-info ml-2" data-toggle="modal" data-target="#exampleModal" onclick="getTotalDetails()" type="button">GetTotalDetalis</button>
+        </div>
+        <div id="update"></div>
+        <table class="table w-95 my-5 rounded">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Country</th>
+                <th>Update</th>
+                <th>Delete</th>
+                <th>Details</th>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+
+        </table>
+        <footer></footer>
+    </div>
 
 
-        <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Empolyee-Info</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Empolyee-Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table w-75 m-auto rounded">
-                            <thead>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Salary</th>
-                                <th>Country</th>
-                            </thead>
-                            <tbody id="detal">
+                </div>
+                <div class="modal-body">
+                    <table class="table w-75 m-auto rounded">
+                        <thead>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Country</th>
+                        </thead>
+                        <tbody id="detal">
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary"
-                            data-dismiss="modal">Save
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save
                             changes</button>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-        <script src="./js/jquery-3.6.0.js"></script>
-        <script src="./js/bootstrap.js"></script>
-        <script defer src="./Main.js"></script>
-    </body>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script defer src="./Main.js"></script>
+</body>
 
 </html>

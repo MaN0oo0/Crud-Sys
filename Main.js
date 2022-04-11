@@ -16,7 +16,7 @@ if (localStorage.getItem("employee") == null) {
 function addEmpolyeeInf() {
     if (e_Name.value != "" && e_salary.value != "" && Contry.value != "") {
 
-        if (typeof e_Name === "string" && typeof e_salary === "number") {
+        if (allLetter(e_Name) === true && allnumeric(e_salary) == true) {
 
             var Employee = {
                 empName: e_Name.value,
@@ -29,10 +29,15 @@ function addEmpolyeeInf() {
             showEmployee();
             clear();
         } else {
-            alert("اكتب الاسم صح ياصحبي او المرتب");
+            CountryNotFounded()
+            setTimeout(Clear_Alert, 2000)
         }
     } else {
-        alert("ضيف بيانات ياصحبي ");
+        InputsNotFounded();
+        setTimeout(Clear_Alert, 5000)
+
+
+
     }
 }
 //show Employee
@@ -133,4 +138,53 @@ function clear() {
     e_salary.value = "";
     Contry.value = "";
     document.getElementById("name").focus();
+}
+
+//Inputs Not Founded
+function Clear_Alert() {
+
+    let m = document.getElementById("not");
+    m.classList.remove("d-block")
+    let v_name = document.getElementById("v_name")
+    v_name.classList.remove("d-block")
+    let v_sal = document.getElementById("v_sal")
+    v_sal.classList.remove("d-block")
+
+};
+
+function InputsNotFounded() {
+    let m = document.getElementById("not");
+    m.classList.add("d-block")
+    let v_name = document.getElementById("v_name")
+    v_name.classList.add("d-block")
+    let v_sal = document.getElementById("v_sal")
+    v_sal.classList.add("d-block")
+
+}
+
+
+//validation Functions
+
+//String only
+function allLetter(e_Name) {
+    var letters = /^[A-Za-z]+$/;
+    if (e_Name.value.match(letters)) {
+        return true;
+    } else {
+
+        return false;
+    }
+}
+
+
+//Numbers
+function allnumeric(e_salary) {
+    var numbers = /^[0-9]+$/;
+    if (e_salary.value.match(numbers)) {
+
+        return true;
+    } else {
+
+        return false;
+    }
 }
