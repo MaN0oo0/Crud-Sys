@@ -29,7 +29,7 @@ function addEmpolyeeInf() {
             showEmployee();
             clear();
         } else {
-            CountryNotFounded()
+            InputsNotFounded();
             setTimeout(Clear_Alert, 2000)
         }
     } else {
