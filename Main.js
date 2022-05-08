@@ -16,7 +16,7 @@ if (localStorage.getItem("employee") == null) {
 function addEmpolyeeInf() {
     if (e_Name.value != "" && e_salary.value != "" && Contry.value != "") {
 
-        if (allLetter(e_Name) === true && allnumeric(e_salary) == true) {
+        if (allnumeric(e_salary) == true) {
 
             var Employee = {
                 empName: e_Name.value,
@@ -32,8 +32,12 @@ function addEmpolyeeInf() {
             InputsNotFounded();
             setTimeout(Clear_Alert, 2000)
         }
+
+
+
+
     } else {
-        InputsNotFounded();
+        InputsNotFoundedAll()
         setTimeout(Clear_Alert, 5000)
 
 
@@ -68,7 +72,7 @@ function getData(index) {
     Contry.value = EmployeeArr[index].emp_contry;
     document.getElementById(
         "update"
-    ).innerHTML = `<button class='btn btn-warning'  onclick="Update(${index})">Update</button>`;
+    ).innerHTML = `<button class='btn btn-warning'  onclick="Update(${index}),RefreshPage()">Update</button>`;
     document.getElementById("add").style.display = "none";
     document.getElementById("dtal").style.display = "none";
     document.getElementById("name").focus();
@@ -145,36 +149,66 @@ function Clear_Alert() {
 
     let m = document.getElementById("not");
     m.classList.remove("d-block")
-    let v_name = document.getElementById("v_name")
-    v_name.classList.remove("d-block")
+
     let v_sal = document.getElementById("v_sal")
     v_sal.classList.remove("d-block")
+    let v_name = document.getElementById("v_name");
+    v_name.classList.remove("d-block")
 
 };
 
 function InputsNotFounded() {
+
+    document.getElementById("not").style.background = "red";
+    document.getElementById("not").style.color = "white";
+    document.getElementById("v_sal").style.background = "red";
+    document.getElementById("v_sal").style.color = "white";
+
     let m = document.getElementById("not");
     m.classList.add("d-block")
-    let v_name = document.getElementById("v_name")
-    v_name.classList.add("d-block")
+
     let v_sal = document.getElementById("v_sal")
     v_sal.classList.add("d-block")
 
 }
 
+function InputsNotFoundedName() {
+    document.getElementById("v_name").style.background = "red";
+    document.getElementById("v_name").style.color = "white";
 
+    let m = document.getElementById("v_name");
+    m.classList.add("d-block")
+}
+
+function InputsNotFoundedContry() {
+    document.getElementById("not").style.background = "red";
+    document.getElementById("not").style.color = "white";
+    let m = document.getElementById("not");
+    m.classList.add("d-block")
+
+}
+
+function InputsNotFoundedAll() {
+    InputsNotFoundedName()
+    InputsNotFounded()
+    InputsNotFoundedContry()
+}
+
+function RefreshPage() {
+    window.open("index.html", "_self");
+}
 //validation Functions
 
 //String only
-function allLetter(e_Name) {
-    var letters = /^[A-Za-z]+$/;
-    if (e_Name.value.match(letters)) {
-        return true;
-    } else {
+// function allLetter(e_Name) {
+//     var letters = /^[A-Za-z]+$/;
+//     if (e_Name.value.match(letters)) {
+//         return true;
+//     } else {
 
-        return false;
-    }
-}
+//         return false;
+//     }
+// }
 
 
 //Numbers
